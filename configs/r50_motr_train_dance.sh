@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ------------------------------------------------------------------------
 # Copyright (c) 2021 megvii-model. All Rights Reserved.
 # ------------------------------------------------------------------------
@@ -34,4 +36,4 @@ python3 main.py \
     --extra_track_attn \
     --data_txt_path_train /home/vipuser/UAVDT/GT/train \
     --data_txt_path_val /home/vipuser/UAVDT/GT/val \
-    |& tee ${EXP_DIR}/output.log
+    2>&1 | tee ${EXP_DIR}/output.log
