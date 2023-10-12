@@ -285,9 +285,9 @@ def build(image_set, args):
     dataset2transform = build_dataset2transform(args, image_set)
     if image_set == 'train':
         data_txt_path = args.data_txt_path_train
-        dataset = DetMOTDetection(args, data_txt_path=data_txt_path, seqs_folder=root + "/UAVDT/vid/train", dataset2transform=dataset2transform)
+        dataset = DetMOTDetection(args, data_txt_path=data_txt_path, seqs_folder=root / "/UAVDT/vid/train", dataset2transform=dataset2transform)
     if image_set == 'val':
         data_txt_path = args.data_txt_path_val
-        dataset = DetMOTDetection(args, data_txt_path=data_txt_path, seqs_folder=root + "/UAVDT/vid/val", dataset2transform=dataset2transform)
+        dataset = DetMOTDetection(args, data_txt_path=data_txt_path, seqs_folder=root / "/UAVDT/vid/val", dataset2transform=dataset2transform)
     return dataset
 
