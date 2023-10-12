@@ -8,21 +8,19 @@
 
 # for MOT17
 
-PRETRAIN=r50_deformable_detr_plus_iterative_bbox_refinement-checkpoint.pth
-EXP_DIR=exps/e2e_motr_r50_dance
-python3 -m torch.distributed.launch --nproc_per_node=8 \
-    --use_env main.py \
+#PRETRAIN=r50_deformable_detr_plus_iterative_bbox_refinement-checkpoint.pth
+EXP_DIR=output
+python3 main.py \
     --meta_arch motr \
     --use_checkpoint \
-    --dataset_file e2e_dance \
-    --epoch 20 \
+    --dataset_file uavdt \
+    --epoch 30 \
     --with_box_refine \
     --lr_drop 10 \
     --lr 2e-4 \
     --lr_backbone 2e-5 \
-    --pretrained ${PRETRAIN} \
     --output_dir ${EXP_DIR} \
-    --batch_size 1 \
+    --batch_size 2 \
     --sample_mode 'random_interval' \
     --sample_interval 10 \
     --sampler_steps 5 9 15 \
@@ -34,6 +32,6 @@ python3 -m torch.distributed.launch --nproc_per_node=8 \
     --fp_ratio 0.3 \
     --query_interaction_layer 'QIM' \
     --extra_track_attn \
-    --data_txt_path_train ./datasets/data_path/joint.train \
-    --data_txt_path_val ./datasets/data_path/mot17.train \
+    --data_txt_path_train /home/vipuser/UAVDT/GT/train \
+    --data_txt_path_val /home/vipuser/UAVDT/GT/val \
     |& tee ${EXP_DIR}/output.log
